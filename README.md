@@ -56,4 +56,9 @@ Json Body
     }
 }
 
+## Deployed Working Instances
+http://my-retail-app.herokuapp.com/procucts/v1/13860428
+# Documentation
+http://my-retail-app.herokuapp.com/swagger-ui.html
+
     
