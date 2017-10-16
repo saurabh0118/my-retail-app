@@ -1,0 +1,1 @@
+web: java -jar target/my-retail-app-1.0.0.jar
