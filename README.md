@@ -2,7 +2,7 @@
 Case Study Recruitment Process
 
 
-## Problem
+# Problem
 
 myRetail is a rapidly growing company with HQ in Richmond, VA and over 200 stores across the east coast. myRetail wants to make its internal data available to any number of client devices, from myRetail.com to native mobile apps.
 
@@ -26,7 +26,7 @@ Build an application that performs the following actions:
 
 •BONUS: Accepts an HTTP PUT request at the same path (/products/{id}), containing a JSON request body similar to the GET response, and updates the product’s price in the data store.  
 
-## Technology
+# Technology
 
 1. Git
 2. Eclipse
@@ -35,23 +35,23 @@ Build an application that performs the following actions:
 5. Heroku Web as well as Heroku Cli. 
 6. JDK 1.8
 
-## Getting Setup
+# Getting Setup
 
 To begin, please install or make sure you have the above on your machine
 
 This app is based on bare bone Spring Boot app.
 
-## To deploy on Heroku :
+# To deploy on Heroku :
 
 heroku deploy:jar target/my-retail-app-1.0.0.jar --app my-retail-app
 
-## Insert data into Redis for the first time:
+# Insert data into Redis for the first time:
 
 * 1) Can be done using Redis CLI (OR) any third party app like  Medis or RDM . 
 * 2) If working on any other redis than local , add it in the Application properties.
 * 3) Uncomment the @SpringBootApplication and Run DataFeeder.java as an application in Eclipse (file provided in this repository)
 
-## URI Example Action
+# URI Example Action
 * GET	/products/v1/{id}	http://localhost:8080/product_info/v1/13860428	(Retrieves Item data with id) 
 * PUT	/products/v1/{id}	http://localhost:8080/product_info/v1/13860428 	(Updates pricing data for id)
 https://my-retail-app.herokuapp.com/products/v1/13860428
@@ -65,7 +65,7 @@ Json Body
     }
 }
 
-## Deployed Working Instances
+# Deployed Working Instances
 http://my-retail-app.herokuapp.com/procucts/v1/13860428
 # Documentation
 http://my-retail-app.herokuapp.com/swagger-ui.html
