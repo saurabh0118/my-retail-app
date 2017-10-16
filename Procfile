@@ -1,1 +1,1 @@
-web: java -jar target/my-retail-app-1.0.0.jar
+web: java $JAVA_OPTS -DREDIS_URL=$REDIS_URL -DPORT=$PORT -Dlog_level=$LOG_LEVEL -jar target/my-retail-app-1.0.0.jar
