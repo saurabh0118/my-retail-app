@@ -1,4 +1,4 @@
-package com.target.myretail.myretailapp;
+package com.target.myretail;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class MyRetailAppApplicationTests {
+public class MyRetailApplicationTests {
 
 	@Test
 	public void contextLoads() {
