@@ -57,8 +57,7 @@ public class ProductInfoControllerTests {
         mvc.perform(MockMvcRequestBuilders.get("/products/v1/13860428").accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
-                .andExpect(jsonPath("$.id", equalTo("13860428")))
-                .andExpect(jsonPath("$.error_message", equalTo(null)));
+                .andExpect(jsonPath("$.id", equalTo("13860428")));
 
     }
 
@@ -75,7 +74,6 @@ public class ProductInfoControllerTests {
         mvc.perform(MockMvcRequestBuilders.get("/products/v1/15117729").accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
-                .andExpect(jsonPath("$.id", equalTo(null)))
                 .andExpect(jsonPath("$.error_message", equalTo("403 Forbidden: You do not have access")));
 
     }

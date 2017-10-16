@@ -57,7 +57,6 @@ public class ProductInfoServiceTests {
         given(productInfoService.getProductDetails(anyString())).willReturn(demo);
         FullProduct output = productInfoService.getProductDetails("13860428");
         assertEquals(output.getProductId(),"13860428");
-        assertEquals(output.getErrorMessage(),"");
     }
 
     @Test
