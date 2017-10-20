@@ -104,11 +104,11 @@ public class ProductInfoService {
         if(itemPrice != null){
             outputWUpdatedPrice.setProductId(productId);
             outputWUpdatedPrice.setItemPrice(itemPrice);
-            outputWUpdatedPrice.setErrorMessage("****SUCCESS***fully updated Product Price Information");
+            outputWUpdatedPrice.setErrorMessage("Successfully updated Product Price Information");
         }
         else {
             outputWUpdatedPrice.setProductId(productId);
-            outputWUpdatedPrice.setErrorMessage("****ERROR*** Unable to update Product Price Information");
+            outputWUpdatedPrice.setErrorMessage("ERROR Unable to update Product Price Information");
         }
 
         return outputWUpdatedPrice;
