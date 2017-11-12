@@ -13,8 +13,13 @@ import org.springframework.data.redis.repository.configuration.EnableRedisReposi
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import com.target.myretail.Model.ItemPrice;
 
+import static com.target.myretail.Common.MyRetailConstants.REPOSITORY_PACKAGE;
+import static com.target.myretail.Common.MyRetailConstants.REDIS_URL;
+import static com.target.myretail.Common.MyRetailConstants.ITEM_REDIS_TEMPLATE;
+
+
 @Configuration
-@EnableRedisRepositories(basePackages = "com.myretail.Repository")
+@EnableRedisRepositories(basePackages = REPOSITORY_PACKAGE)
 public class ApplicationConfiguration {
 
 	@Autowired
@@ -26,7 +31,7 @@ public class ApplicationConfiguration {
 
 		JedisConnectionFactory redisConnectionFactory = new JedisConnectionFactory();
 		try {
-			redisUri = new URI(env.getProperty("REDIS_URL"));
+			redisUri = new URI(env.getProperty(REDIS_URL));
 			redisConnectionFactory.setHostName(redisUri.getHost());
 			redisConnectionFactory.setPort(redisUri.getPort());
 			redisConnectionFactory
@@ -37,7 +42,7 @@ public class ApplicationConfiguration {
 		return redisConnectionFactory;
 	}
 
-	@Bean(name = "itemRedisTemplate")
+	@Bean(name = ITEM_REDIS_TEMPLATE)
 	public RedisTemplate<String, Map<String, ItemPrice>> redisTemplate() {
 		RedisTemplate<String, Map<String, ItemPrice>> template = new RedisTemplate<>();
 		template.setConnectionFactory(jedisConnectionFactory());

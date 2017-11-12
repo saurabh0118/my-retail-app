@@ -19,6 +19,8 @@ public class ProductInfoService {
 
     @Autowired
     ProductRepository productRepository;
+    @Autowired
+    ProductDescriptionService descriptionService;
 
     RestTemplate restTemplate = new RestTemplate();
 
@@ -32,7 +34,7 @@ public class ProductInfoService {
         }
         else {
             // Call the external API to get Product id and Name
-            ProductInfo productInfo = getProductDescription(id);
+            ProductInfo productInfo = descriptionService.getProductDescription(id);
 
             if (productInfo.getErrorMessage() != null) {
                 if (productInfo.getErrorMessage().contains("403")) {
@@ -69,26 +71,7 @@ public class ProductInfoService {
     }
 
 
-    // Call external API to get details of the product
-    public ProductInfo getProductDescription (String id) {
-
-        ProductInfo productInfo = new ProductInfo();
-        String url = "http://redsky.target.com/v1/pdp/tcin/" + id + "?excludes=taxonomy,price,promotion,bulk_ship,rating_and_review_reviews,rating_and_review_statistics,question_answer_statistics";
-        LOGGER.info(url);
-        try {
-            productInfo = restTemplate.getForObject(url, ProductInfo.class);
-        }
-        catch (HttpClientErrorException ex){
-            LOGGER.info("Exception:" + ex.toString());
-            productInfo.setErrorMessage(ex.getMessage());
-        }
-
-        LOGGER.info("getProductDescription:" + productInfo.toString());
-        return productInfo;
-    }
-
-
-    //Repository Ca;; to get the price information of the product from the DB
+    //Repository Call to get the price information of the product from the DB
     public ItemPrice getProductPrice (ProductInfo productInfo) {
 
         String tcin = productInfo.getProduct().getItem().getTcin();

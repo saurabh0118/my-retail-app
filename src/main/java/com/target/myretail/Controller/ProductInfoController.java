@@ -1,8 +1,7 @@
 package com.target.myretail.Controller;
 
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import static com.target.myretail.Common.MyRetailConstants.SWAGGER_API_NAME;
+import static com.target.myretail.Common.MyRetailConstants.SWAGGER_API_DESC;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -23,14 +22,12 @@ import io.swagger.annotations.Api;
 @CrossOrigin
 @RestController
 @RequestMapping("/products/v1")
-@Api(value="myretailapi", description="API to get Product Information")
+@Api(value=SWAGGER_API_NAME, description=SWAGGER_API_DESC)
 
 public class ProductInfoController {
 
     @Autowired
     ProductInfoService productInfoService;
-
-    private static final Logger logger = LoggerFactory.getLogger(ProductInfoController.class);
 
     /**
      * GET Method to get detailed information about product

@@ -27,6 +27,9 @@ public class ProductInfoServiceTests {
 
     @Mock
     ProductInfoService productInfoService;
+    
+    @Mock
+    ProductDescriptionService descriptionService;
 
     @Mock
     ProductRepository productRepository;
@@ -90,8 +93,8 @@ public class ProductInfoServiceTests {
     public void TestInvalidProductIDInput() {
     		ProductInfo demoProductInfo = new ProductInfo();
     		demoProductInfo.setErrorMessage("403 Error in service");
-    		given(productInfoService.getProductDescription(anyString())).willReturn(demoProductInfo);
-        ProductInfo productInfo = productInfoService.getProductDescription("123456789");
+    		given(descriptionService.getProductDescription(anyString())).willReturn(demoProductInfo);
+        ProductInfo productInfo = descriptionService.getProductDescription("123456789");
         assertNull(productInfo.getProduct());
         assertTrue(productInfo.getErrorMessage().contains("403"));
     }
