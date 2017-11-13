@@ -1,5 +1,7 @@
 package com.target.myretail.Service;
 
+import static com.target.myretail.Common.MyRetailConstants.PRODUCT_DESC_SERVICE_URL_PREFIX;
+import static com.target.myretail.Common.MyRetailConstants.PRODUCT_DESC_SERVICE_URL_SUFFIX;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +28,7 @@ public class ProductDescriptionService {
     public ProductInfo getProductDescription (String id) {
 
         ProductInfo productInfo = new ProductInfo();
-        String url = env.getProperty("target.product.api.prefix") + id + env.getProperty("target.product.api.suffix");
+        String url = env.getProperty(PRODUCT_DESC_SERVICE_URL_PREFIX) + id + env.getProperty(PRODUCT_DESC_SERVICE_URL_SUFFIX);
         LOGGER.info(url);
         try {
             productInfo = restTemplate.getForObject(url, ProductInfo.class);

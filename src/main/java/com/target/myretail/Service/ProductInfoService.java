@@ -1,12 +1,12 @@
 package com.target.myretail.Service;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import static com.target.myretail.Common.MyRetailConstants.ERROR_OCCURED_GET;
+import static com.target.myretail.Common.MyRetailConstants.SUCCESS_UPDATE_PRICE;
+import static com.target.myretail.Common.MyRetailConstants.ERROR_OCCURED_UPDATE_PRICE;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
-
+import com.target.myretail.Common.ErrorMessages;
 import com.target.myretail.Model.FullProduct;
 import com.target.myretail.Model.ItemPrice;
 import com.target.myretail.Model.ProductInfo;
@@ -14,8 +14,6 @@ import com.target.myretail.Repository.ProductRepository;
 
 @Service
 public class ProductInfoService {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(ProductInfoService.class);
 
     @Autowired
     ProductRepository productRepository;
@@ -30,20 +28,14 @@ public class ProductInfoService {
         FullProduct fullProduct = new FullProduct();
 
         if (id == null) {
-            fullProduct.setErrorMessage("404 - Not Found");
+            fullProduct.setErrorMessage(ErrorMessages.getErrorMessage("404"));
         }
         else {
             // Call the external API to get Product id and Name
             ProductInfo productInfo = descriptionService.getProductDescription(id);
 
             if (productInfo.getErrorMessage() != null) {
-                if (productInfo.getErrorMessage().contains("403")) {
-                    productInfo.setErrorMessage("403 Forbidden: This item cannot be retrieved via this guest-facing endpoint state");
-                }
-                if (productInfo.getErrorMessage().contains("404")) {
-                    productInfo.setErrorMessage("404 Not Found: This item was not found in the target API for product details");
-                }
-                fullProduct.setErrorMessage(productInfo.getErrorMessage());
+                fullProduct.setErrorMessage(ErrorMessages.getErrorMessage(productInfo.getErrorMessage()));
             }
             else {
                 //If the API returns data for the Product, get the price details from DB
@@ -61,7 +53,7 @@ public class ProductInfoService {
                 else {
                     fullProduct.setProductId(productInfo.getProduct().getItem().getTcin());
                     fullProduct.setName(productInfo.getProduct().getItem().getProduct_description().getTitle());
-                    fullProduct.setErrorMessage("ERROR: Item Price information is not available.");
+                    fullProduct.setErrorMessage(ERROR_OCCURED_GET);
                 }
 
             }
@@ -87,11 +79,11 @@ public class ProductInfoService {
         if(itemPrice != null){
             outputWUpdatedPrice.setProductId(productId);
             outputWUpdatedPrice.setItemPrice(itemPrice);
-            outputWUpdatedPrice.setErrorMessage("Successfully updated Product Price Information");
+            outputWUpdatedPrice.setErrorMessage(SUCCESS_UPDATE_PRICE);
         }
         else {
             outputWUpdatedPrice.setProductId(productId);
-            outputWUpdatedPrice.setErrorMessage("ERROR Unable to update Product Price Information");
+            outputWUpdatedPrice.setErrorMessage(ERROR_OCCURED_UPDATE_PRICE);
         }
 
         return outputWUpdatedPrice;
