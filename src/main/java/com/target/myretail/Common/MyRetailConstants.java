@@ -24,8 +24,8 @@ public class MyRetailConstants {
 	public static final String SWAGGER_APP_DESC = "Spring Boot REST API for getting Prodcut Information";
 	public static final String SWAGGER_APP_NAME = "My Retail Rest API";
 	public static final String SWAGGER_BASE_PACKAGE = "com.target.myretail.Controller";
-	public static final String SWAGGER_DEV_EMAIL = "Spring Boot REST API for getting Prodcut Information";
-	public static final String SWAGGER_DEV_NAME = "My Retail Rest API";
+	public static final String SWAGGER_DEV_EMAIL = "saurabh0118@gmail.com";
+	public static final String SWAGGER_DEV_NAME = "Saurabh Chauhan";
 	public static final String SWAGGER_PRODUCT_REGEX = "/product.*";
 	public static final String UPDATE_LOG_SUCCESS = "Update Item for price[";
 	public static final String USD = "USD";
