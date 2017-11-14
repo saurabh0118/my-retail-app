@@ -5,7 +5,20 @@ import java.util.Map;
 
 public class ErrorMessages {
 	
-	public static String getErrorMessage(String errCode) {
+	private static ErrorMessages instance;
+    
+    //private constructor to avoid client applications to use constructor
+    private ErrorMessages(){}
+
+    public static synchronized ErrorMessages getInstance(){
+    		
+    		if(instance == null){
+            instance = new ErrorMessages();
+        }
+        return instance;
+    }
+	
+	public String getErrorMessage(String errCode) {
 		
 		Map<String, String> errorMap = new HashMap<String, String>();
 		errorMap.put("400","404 - Bad Request");

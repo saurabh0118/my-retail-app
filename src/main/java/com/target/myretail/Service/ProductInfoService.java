@@ -28,14 +28,14 @@ public class ProductInfoService {
         FullProduct fullProduct = new FullProduct();
 
         if (id == null) {
-            fullProduct.setErrorMessage(ErrorMessages.getErrorMessage("404"));
+            fullProduct.setErrorMessage(ErrorMessages.getInstance().getErrorMessage("404"));
         }
         else {
             // Call the external API to get Product id and Name
             ProductInfo productInfo = descriptionService.getProductDescription(id);
 
             if (productInfo.getErrorMessage() != null) {
-                fullProduct.setErrorMessage(ErrorMessages.getErrorMessage(productInfo.getErrorMessage()));
+                fullProduct.setErrorMessage(ErrorMessages.getInstance().getErrorMessage(productInfo.getErrorMessage()));
             }
             else {
                 //If the API returns data for the Product, get the price details from DB
